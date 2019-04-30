@@ -263,6 +263,8 @@ public class Model
         Scanner scanner = new Scanner(System.in);
 
         place(scanner.nextInt() - 1);
+        
+        scanner.close();
     }
     
     /**
