@@ -1,6 +1,9 @@
 package app_logic;
 
+import static java.lang.Thread.sleep;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author alexander.garuba
@@ -24,7 +27,10 @@ public class Model
             {
                     user_turn = true;
             }
-
+            
+            //System.out.println("Enter a CPU Difficulty (Easy, Medium, Hard): ");
+            //Scanner scanner = new Scanner(System.in);
+            
             run();
     }
 
@@ -198,11 +204,6 @@ public class Model
                     }
             }
 
-            if (link == 4)
-            {
-                    return true;
-            }
-
             row = prev_row - 1;
             col = prev_col + 1;
 
@@ -220,12 +221,7 @@ public class Model
                     }
             }
 
-            if (link == 4)
-            {
-                    return true;
-            }
-
-            return false;
+            return link == 4;
     }
 
     /**
@@ -251,6 +247,14 @@ public class Model
             case 6:  place(col);
                      break;
         }
+        
+        try
+        {
+            sleep(500);
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -263,8 +267,6 @@ public class Model
         Scanner scanner = new Scanner(System.in);
 
         place(scanner.nextInt() - 1);
-        
-        scanner.close();
     }
     
     /**
@@ -316,6 +318,5 @@ public class Model
     public static void main(String[] args)
     {
             new Model();
-
     }
 }
