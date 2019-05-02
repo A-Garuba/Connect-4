@@ -1,3 +1,4 @@
+
 import static java.lang.Thread.sleep;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -200,7 +201,7 @@ public class Grid
         }
 
         //check diagonal, start at placed tile and count to top-left
-        //				 return to placed tile and count to bottom-right
+        //           return to placed tile and count to bottom-right
         link = 1;
         row = prev_row + 1;
         col = prev_col - 1;
@@ -241,22 +242,22 @@ public class Grid
 
     /**
      * Takes user input to place a tile, prompts again if column is full
-     * 
+     *
      * @return the column chosen to place the tile into
      */
     private int userTurn()
     {
         System.out.println("Enter a column (1-7): ");
         Scanner scanner = new Scanner(System.in);
-        
+
         int col = scanner.nextInt() - 1;
-        
-        while (grid[grid.length-1][col] != 0)
+
+        while (grid[grid.length - 1][col] != 0)
         {
             System.out.println("That column is full. Please try another: ");
             col = scanner.nextInt() - 1;
         }
-        
+
         return col;
     }
 
