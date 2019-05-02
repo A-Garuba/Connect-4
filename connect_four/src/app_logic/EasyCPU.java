@@ -6,12 +6,14 @@
  */
 public class EasyCPU extends CPU
 {
-    
-    public EasyCPU(){}
+
+    public EasyCPU()
+    {
+    }
 
     /**
      * Randomly chooses a column to place a tile in
-     * 
+     *
      * @param grid the ConnectFour 6x7 integer grid
      * @return the column chosen to place the tile into
      */
@@ -22,9 +24,9 @@ public class EasyCPU extends CPU
         do
         {
             col = (int) (Math.random() * 7);
-        } while (grid[grid.length-1][col] != 0);
+        } while (grid[grid.length - 1][col] != 0);
 
         return col;
     }
-    
+
 }
