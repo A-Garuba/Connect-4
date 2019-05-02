@@ -1,16 +1,18 @@
 /**
  * @author alexander.garuba
  *
- * This class contains the Hard CPU algorithm which 
+ * This class contains the Hard CPU algorithm which
  */
 public class HardCPU extends CPU
 {
-    
-    public HardCPU(){}
+
+    public HardCPU()
+    {
+    }
 
     /**
-     * This function 
-     * 
+     * This function
+     *
      * @param grid the ConnectFour 6x7 integer grid
      * @return the column chosen to place the tile into
      */
@@ -21,9 +23,9 @@ public class HardCPU extends CPU
         do
         {
             col = (int) (Math.random() * 7);
-        } while (grid[grid.length-1][col] != 0);
+        } while (grid[grid.length - 1][col] != 0);
 
         return col;
     }
-    
+
 }
