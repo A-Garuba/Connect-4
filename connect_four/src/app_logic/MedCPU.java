@@ -2,22 +2,24 @@
  * @author alexander.garuba
  *
  * This class contains the Medium CPU algorithm which prioritizes placing tiles
- * in the 3 central columns as well as blocks 85% of user links of 3 tiles
+ * in the 3 central columns as well as blocks a certain % of user links of 3 tiles.
+ * It has a probability of overlooking winning moves.
  */
 public class MedCPU extends CPU
 {
 
-    private final double BLOCK = 1;
-    private final double WIN = 1;
+    private final double BLOCK = .8;
+    private final double WIN = .8;
 
     public MedCPU()
     {
     }
 
     /**
-     * This function determines which column to place the tile into. Prioritizes
-     * central 3 columns Blocks BLOCK% of user links of 3 tiles Places 4th tile
-     * in a winning link WIN% of the time
+     * This function determines which column to place the tile into.
+     * Prioritizes central 3 columns
+     * Blocks BLOCK% of user links of 3 tiles
+     * Places 4th tile in a winning link WIN% of the time
      *
      * @param grid the ConnectFour 6x7 integer grid
      * @return the column chosen to place the tile into
@@ -26,8 +28,8 @@ public class MedCPU extends CPU
     public int turn(int[][] grid)
     {
         int col;
-        int win = findLink(grid, 2);
-        int block = findLink(grid, 1);
+        int win = findLink(grid, 2, false);
+        int block = findLink(grid, 1, false);
 
         //if there is a winning move, take it with WIN %
         if (win != -1 && Math.random() < WIN)
