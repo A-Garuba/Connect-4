@@ -1,4 +1,3 @@
-
 import static java.lang.Thread.sleep;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -44,6 +43,8 @@ public class Grid
      */
     private void run()
     {
+        boolean winner = false;
+        
         while (true)
         {
             if (user_turn)
@@ -67,20 +68,46 @@ public class Grid
 
             if (checkWinner())
             {
+                //stop if winner found
+                winner = true;
                 break;
+            }
+            else
+            {
+                int full=0;
+                for (int j = 0; j < grid[0].length; j++)
+                {
+                    if (grid[grid.length - 1][j] != 0)
+                    {
+                        full++;
+                    }
+                }
+                
+                //stop if grid is full
+                if (full == grid[0].length)
+                {
+                    break;
+                }
             }
 
             //alternate turns
             user_turn = !user_turn;
         }
-
-        if (user_turn)
+        
+        if (winner)
         {
-            System.out.println("You won!");
+            if (user_turn)
+            {
+                System.out.println("You won!");
+            }
+            else
+            {
+                System.out.println("You've lost.");
+            }
         }
         else
         {
-            System.out.println("You've lost.");
+            System.out.println("You have tied..");
         }
 
     }
@@ -251,7 +278,11 @@ public class Grid
         Scanner scanner = new Scanner(System.in);
 
         int col = scanner.nextInt() - 1;
-
+        while (col > 6 || col < 0)
+        {
+            System.out.println("Invalid column. Please try another: ");
+            col = scanner.nextInt() - 1;
+        }
         while (grid[grid.length - 1][col] != 0)
         {
             System.out.println("That column is full. Please try another: ");
