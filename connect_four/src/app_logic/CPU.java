@@ -13,13 +13,15 @@ public abstract class CPU
 
     /**
      * This function determines if any links of 3 of a given type of tile have
-     * been made (horizontal, vertical, and diagonal).
+     * been made (horizontal, vertical, and diagonal). Also can determine if the
+     * opponent will win on next turn through last parameter.
      *
      * @param grid the ConnectFour 6x7 integer grid
      * @param side the tile to search for links (1 = user, 2 = CPU)
+     * @param avoid used to increment possible tile placement by 1 (predict opponent win next move)
      * @return the column in which to lengthen the link to 4 or block a 3-link
      */
-    public int findLink(int[][] grid, int side)
+    public int findLink(int[][] grid, int side, boolean avoid)
     {
         int[] empty_tiles = new int[grid[0].length];
 
@@ -44,6 +46,16 @@ public abstract class CPU
             }
             //if column is full, put -1 in empty_tiles
             else if (curr_row == grid.length)
+            {
+                curr_row = -1;
+            }
+            //increment to detect avoided columns
+            if (curr_row != -1 && avoid)
+            {
+                curr_row++;
+            }
+            //if column only has one space left, cannot check above it for future moves
+            if (curr_row == grid.length && avoid)
             {
                 curr_row = -1;
             }
