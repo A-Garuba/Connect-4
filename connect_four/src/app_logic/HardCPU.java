@@ -3,7 +3,9 @@ import java.util.ArrayList;
 /**
  * @author alexander.garuba
  *
- * This class contains the Hard CPU algorithm which
+ * This class contains the Hard CPU algorithm which uses a Connect Four heuristic to begin the game.
+ * It also will anticipate 2 moves in advance to prevent setting up the user to block winning moves
+ * or win the game.
  */
 public class HardCPU extends CPU
 {
